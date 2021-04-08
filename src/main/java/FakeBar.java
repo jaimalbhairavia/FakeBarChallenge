@@ -44,8 +44,8 @@ public class FakeBar {
             String measureResult;
             Set<Integer> goodBars = new HashSet<>();
 
-            for(int n=0; n< numberOfBars.length/2;n++) {
-                measureResult = enterNumberAndClickWeigh(i, j, numberOfBars);
+              while(i != j){
+                  measureResult = enterNumberAndClickWeigh(i, j, numberOfBars);
 
                 //when bars are same
                 if (measureResult.contains("=")) {
@@ -64,22 +64,22 @@ public class FakeBar {
                 }
 
                 //when bars are different
-                else if (measureResult.contains(">") || measureResult.contains("<")){
+                else if (measureResult.contains(">") || measureResult.contains("<") && goodBars.isEmpty()){
+                     /*this will only execute if the first iteration of new bar comparision results in '>' or '<'
+                     fake candidates are 0 and 8 */
                     fakeCandidate1 = numberOfBars[i];
                     fakeCandidate2 = numberOfBars[j];
-
-                    //this will only execute if the first iteration of new bar comparision results in '>' or '<'
-                    // fake candidates are 0 and 8
-                    if(goodBars.size() == 0){
-                        j--;
-                        measureResult = enterNumberAndClickWeigh(fakeCandidate1, j, numberOfBars);
-                        fakeBar = decideFakeBar(measureResult, fakeCandidate1, fakeCandidate2);
-                        clickFakeBarAndPrintWeighings(fakeBar);
-                        break;
+                    j--;
+                    measureResult = enterNumberAndClickWeigh(fakeCandidate1, j, numberOfBars);
+                    fakeBar = decideFakeBar(measureResult, fakeCandidate1, fakeCandidate2);
+                    clickFakeBarAndPrintWeighings(fakeBar);
+                    break;
                     }
 
-                    //this will only execute if the code is in the second iteration of new bar comparision
-                    else{
+                    //this will only execute if the code is in the second or more iteration of new bar comparision
+                else{
+                    fakeCandidate1 = numberOfBars[i];
+                    fakeCandidate2 = numberOfBars[j];
                     measureResult = enterNumberAndClickWeigh(goodBars.iterator().next(), fakeCandidate1, numberOfBars);
                     fakeBar = decideFakeBar(measureResult, fakeCandidate1, fakeCandidate2);
                     clickFakeBarAndPrintWeighings(fakeBar);
@@ -88,15 +88,13 @@ public class FakeBar {
                 }
 
             }
-
-        }
         catch (Exception e){
             System.out.println("Error: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }
 
-    //Method to enter the numbers, click on weigh
+    //Method to click on reset, fill out bowl grid, click on weigh
     private String enterNumberAndClickWeigh(int i, int j, int[] array){
         try {
             landingPage.getResetButton(driver).click();
@@ -112,6 +110,8 @@ public class FakeBar {
         return landingPage.getMeasureResults(driver).getText();
     }
 
+
+    //method decides the fake bar from the candidates
     private int decideFakeBar(String result, int fakeCandidate1, int fakeCandidate2){
         int fakeBar;
         if(result.contains(">") || result.contains("<")){
@@ -124,6 +124,7 @@ public class FakeBar {
 
     }
 
+    //method clicks the fake bar on the UI and prints the weighing's
     private void clickFakeBarAndPrintWeighings(int fakeBar){
 
         landingPage.getGoldBars(driver).get(fakeBar).click();
@@ -131,12 +132,12 @@ public class FakeBar {
 
         alert = driver.switchTo().alert();
         String alertMessage = alert.getText();
-        Assert.assertEquals(alertMessage, "Yay! You find it!");
         System.out.println(alertMessage);
+        Assert.assertEquals(alertMessage, "Yay! You find it!");
         alert.accept();
 
         int numberOfWeighings = landingPage.getWeighings(driver).size();
-        System.out.println("The total number of weighings are : " + numberOfWeighings);
+        System.out.println("The total number of weighing's are: " + numberOfWeighings);
         for(WebElement webElement : landingPage.getWeighings(driver)){
             System.out.println(webElement.getText());
         }
