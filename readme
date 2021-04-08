@@ -1,0 +1,20 @@
+FakebarChallenge
+
+Tools and Framework
+Java – 1.8 version 1.8.0_251
+Selenium – 3.141.59
+TestNG – 7.1.0
+ChromerDriver
+WebDriverManager
+
+Resources
+Maven dependencies - https://mvnrepository.com/
+
+
+Installation
+•	Link to the code repository - https://github.com/jaimalbhairavia/FakeBarChallenge.git
+•	Once project is pulled and open in an IDE, Reload all maven dependencies. All dependencies should be resolved in the pom.xml file.
+•	Under project structure, choose project SDK to be 1.8. If not available, please download. For windows users, the following link can be used for reference - https://www.codejava.net/java-se/download-and-install-java-8-on-windows
+For mac users, please refer - https://java.tutorials24x7.com/blog/how-to-install-java-8-on-mac
+•	The application is developed to run on Google Chrome. Please make sure you have it installed. Can be downloaded here - https://www.google.com/chrome/
+•	A configuration for test_01_findFakeBar should automatically be created. Run the configuration and test case should execute.
