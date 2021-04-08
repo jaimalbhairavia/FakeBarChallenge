@@ -15,11 +15,13 @@ Maven dependencies - https://mvnrepository.com/
 Installation
 •	Link to the code repository - https://github.com/jaimalbhairavia/FakeBarChallenge.git
 •	Install Maven if not already installed. Refer - https://maven.apache.org/install.html
-•	Once project is pulled and open in an IDE, it should resolve all maven dependencies automatically. If not resolved (check the pom.xml for any dependencies in red), reload all maven dependencies from the maven tool window. All dependencies should now be resolved in the pom.xml file.
+•   To clone the repository, please refer the article at - https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository
+•	Once project is successfully pulled and, open it in an IDE (Assuming Intellij for this instructions).
+•   The IDE  should resolve all maven dependencies automatically. If not resolved (check the pom.xml for any dependencies in red), reload all maven dependencies from the maven tool window. All dependencies should now be resolved in the pom.xml file.
 •	Under project structure, choose project SDK to be 1.8. If not available, please download. For windows users, the following link can be used for reference - https://www.codejava.net/java-se/download-and-install-java-8-on-windows
 For mac users, please refer - https://java.tutorials24x7.com/blog/how-to-install-java-8-on-mac
 •	The application is developed to run on Google Chrome. Please make sure you have it installed. Can be downloaded here - https://www.google.com/chrome/
-•	This step should internally be done by the IDE (assuming IDE is Intellij), but if not, navigate to the testng.xml file and modify the ‘name’ under the ‘test’ tag with the absolute path of the FakeBar.java class in your system. Mine is
+•	This step should internally be done by the IDE, if not, navigate to the testng.xml file and modify the ‘name’ under the ‘test’ tag with the absolute path of the FakeBar.java class in your system. Mine is
 “/Users/jaimalbhairavia/IdeaProjects/FakeBarChallenge/src/main/java/FakeBar.java”
 •	Right click anywhere in the testng.xml file and click ‘Run../testng.xml’
 •	The program should execute, and the result displayed in the console
