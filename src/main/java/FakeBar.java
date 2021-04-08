@@ -38,7 +38,7 @@ public class FakeBar {
     public void test_01_findFakeBar(){
         try{
             int[] numberOfBars = new int[]{0,1,2,3,4,5,6,7,8};
-            int fakeCandidate1 = Integer.MIN_VALUE, fakeCandidate2 = Integer.MIN_VALUE;
+            int fakeCandidate1 = 0, fakeCandidate2 =0;
             int i=0, j=numberOfBars.length-1;
             int fakeBar=Integer.MIN_VALUE;
             String measureResult;
@@ -60,8 +60,6 @@ public class FakeBar {
                         clickFakeBarAndPrintWeighings(fakeBar);
                         break;
                     }
-                    else
-                        continue;
 
                 }
 
