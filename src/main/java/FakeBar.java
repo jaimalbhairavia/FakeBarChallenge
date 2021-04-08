@@ -90,7 +90,6 @@ public class FakeBar {
             }
         catch (Exception e){
             System.out.println("Error: " + e.getMessage());
-            Assert.fail(e.getMessage());
         }
     }
 
@@ -105,7 +104,6 @@ public class FakeBar {
 
         } catch (Exception e){
             System.out.println("Error: " + e.getMessage());
-            Assert.fail(e.getMessage());
         }
         return landingPage.getMeasureResults(driver).getText();
     }
@@ -126,20 +124,24 @@ public class FakeBar {
 
     //method clicks the fake bar on the UI and prints the weighing's
     private void clickFakeBarAndPrintWeighings(int fakeBar){
+        try{
+            landingPage.getGoldBars(driver).get(fakeBar).click();
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
-        landingPage.getGoldBars(driver).get(fakeBar).click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            alert = driver.switchTo().alert();
+            String alertMessage = alert.getText();
+            System.out.println(alertMessage);
+            Assert.assertEquals(alertMessage, "Yay! You find it!");
+            alert.accept();
 
-        alert = driver.switchTo().alert();
-        String alertMessage = alert.getText();
-        System.out.println(alertMessage);
-        Assert.assertEquals(alertMessage, "Yay! You find it!");
-        alert.accept();
-
-        int numberOfWeighings = landingPage.getWeighings(driver).size();
-        System.out.println("The total number of weighing's are: " + numberOfWeighings);
-        for(WebElement webElement : landingPage.getWeighings(driver)){
-            System.out.println(webElement.getText());
+            int numberOfWeighings = landingPage.getWeighings(driver).size();
+            System.out.println("The total number of weighing's are: " + numberOfWeighings);
+            for(WebElement webElement : landingPage.getWeighings(driver)) {
+                System.out.println(webElement.getText());
+            }
+        }
+        catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
