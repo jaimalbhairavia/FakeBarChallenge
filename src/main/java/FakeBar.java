@@ -144,6 +144,6 @@ public class FakeBar {
 
     @AfterTest
     public void afterTest(){
-//        driver.quit();
+        driver.quit();
     }
 }
