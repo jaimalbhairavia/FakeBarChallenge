@@ -44,7 +44,7 @@ public class FakeBar {
             String measureResult;
             Set<Integer> goodBars = new HashSet<>();
 
-              while(i != j){
+              while(true){
                   measureResult = enterNumberAndClickWeigh(i, j, numberOfBars);
 
                 //when bars are same
